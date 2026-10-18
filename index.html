@@ -14,7 +14,8 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
     html, body {
@@ -22,18 +23,18 @@
       height: 100%;
       height: 100dvh;
       overflow: hidden;
-      background-color: #f0f2f5;
+      background: #f0f2f5;
     }
 
     body {
       background-image: url('background.jpg');
-      background-size: cover;
+      background-size: 100% auto;
       background-position: center top;
       background-repeat: no-repeat;
       position: relative;
     }
 
-    /* === Здесь меняй все данные === */
+    /* === Здесь меняй данные === */
     :root {
       --ticket-number: "AAF142608";
       --price: "10";
@@ -52,133 +53,140 @@
 
     .field {
       position: absolute;
-      color: #1a1a1a;
+      color: #1c1c1e;
       font-size: 15px;
       font-weight: 500;
+      letter-spacing: -0.2px;
     }
 
     /* ===== ШАПКА ===== */
     .header-left {
-      top: 5.8%;
-      left: 5.5%;
+      top: 5.6%;
+      left: 5.2%;
       font-size: 17px;
       font-weight: 600;
       color: #1a56db;
     }
 
     .header-right {
-      top: 5.8%;
-      right: 14%;
+      top: 5.9%;
+      right: 13.5%;
       font-size: 15px;
       font-weight: 500;
       color: #1a56db;
     }
 
-    /* ===== ОСНОВНЫЕ ПОЛЯ (поднял вверх) ===== */
+    /* ===== БЛОК 1 (Номер, Вартість, Дата) — сдвинул вправо ===== */
     .label-ticket {
-      top: 26.8%;
-      left: 12%;
-      color: #8a8a8a;
+      top: 26.6%;
+      left: 13.5%;
+      color: #8e8e93;
       font-size: 13px;
+      font-weight: 400;
     }
     .value-ticket {
-      top: 26.8%;
-      left: 42%;
+      top: 26.6%;
+      left: 43.5%;
       font-weight: 600;
     }
 
     .label-price {
-      top: 31.3%;
-      left: 12%;
-      color: #8a8a8a;
+      top: 31.1%;
+      left: 13.5%;
+      color: #8e8e93;
       font-size: 13px;
+      font-weight: 400;
     }
     .value-price {
-      top: 31.3%;
-      left: 42%;
+      top: 31.1%;
+      left: 43.5%;
       font-weight: 600;
     }
 
     .label-date {
-      top: 35.8%;
-      left: 12%;
-      color: #8a8a8a;
+      top: 35.6%;
+      left: 13.5%;
+      color: #8e8e93;
       font-size: 13px;
+      font-weight: 400;
     }
     .value-date {
-      top: 35.8%;
-      left: 42%;
+      top: 35.6%;
+      left: 43.5%;
       font-weight: 600;
     }
 
+    /* ===== БЛОК 2 (Бортовий + Код) — поднял и вправо ===== */
     .label-board {
-      top: 46.2%;
-      left: 12%;
-      color: #8a8a8a;
+      top: 45.3%;
+      left: 13.5%;
+      color: #8e8e93;
       font-size: 13px;
+      font-weight: 400;
     }
     .value-board {
-      top: 46.2%;
-      left: 42%;
+      top: 45.3%;
+      left: 43.5%;
       font-weight: 600;
     }
 
     .label-code {
-      top: 50.8%;
-      left: 12%;
-      color: #8a8a8a;
+      top: 49.8%;
+      left: 13.5%;
+      color: #8e8e93;
       font-size: 13px;
+      font-weight: 400;
     }
     .value-code {
-      top: 50.8%;
-      left: 42%;
+      top: 49.8%;
+      left: 43.5%;
       font-weight: 600;
     }
 
-    /* Таймер */
+    /* ===== ТАЙМЕР — поднял ===== */
     .timer-label {
-      top: 63.5%;
+      top: 62.1%;
       left: 0;
       width: 100%;
       text-align: center;
-      color: #555;
-      font-size: 14px;
+      color: #636366;
+      font-size: 13px;
       font-weight: 500;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
     }
 
     .timer-value {
-      top: 68.2%;
+      top: 66.4%;
       left: 0;
       width: 100%;
       text-align: center;
       color: #1a56db;
-      font-size: 36px;
+      font-size: 34px;
       font-weight: 700;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
     }
 
     /* ===== НИЖНИЕ ПОДПИСИ ===== */
     .nav-home {
-      bottom: 3.8%;
-      left: 16%;
-      font-size: 11px;
-      color: #333;
+      bottom: 4.1%;
+      left: 15.8%;
+      font-size: 10px;
+      color: #1c1c1e;
       font-weight: 500;
     }
 
     .nav-services {
-      bottom: 3.8%;
-      left: 44.5%;
-      font-size: 11px;
-      color: #333;
+      bottom: 4.1%;
+      left: 44.2%;
+      font-size: 10px;
+      color: #1c1c1e;
       font-weight: 500;
     }
 
     .nav-docs {
-      bottom: 3.8%;
-      left: 72%;
-      font-size: 11px;
+      bottom: 4.1%;
+      left: 71.8%;
+      font-size: 10px;
       color: #1a56db;
       font-weight: 500;
     }
