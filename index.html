@@ -1,53 +1,13 @@
-<!DOCTYPE html>
-<html lang="ru">
 <head>
-  <meta charset="UTF-8">
+  <!-- уже должно быть -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>fos1ble.github.io</title>
-
-  <style>
-    body {
-      background-image: url('background.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      min-height: 100vh;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    #fullscreenBtn {
-      padding: 18px 36px;
-      font-size: 20px;
-      font-weight: bold;
-      background: rgba(0, 0, 0, 0.75);
-      color: white;
-      border: 2px solid white;
-      border-radius: 12px;
-      cursor: pointer;
-    }
-  </style>
+  
+  <!-- Добавь вот это -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#000000">
+  
+  <!-- Иконка (желательно) -->
+  <link rel="apple-touch-icon" href="icon.png">
 </head>
-<body>
-
-  <button id="fullscreenBtn" onclick="goFullscreen()">Открыть на весь экран</button>
-
-  <script>
-    function goFullscreen() {
-      const elem = document.documentElement;
-
-      if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-      } else if (elem.webkitRequestFullscreen) {
-        elem.webkitRequestFullscreen();
-      } else if (elem.msRequestFullscreen) {
-        elem.msRequestFullscreen();
-      }
-    }
-  </script>
-
-</body>
-</html>
