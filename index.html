@@ -50,7 +50,6 @@
     .code::after { content: var(--code); }
     .timer::after { content: var(--timer); }
 
-    /* Позиционирование текста */
     .field {
       position: absolute;
       color: #1a1a1a;
@@ -58,74 +57,87 @@
       font-weight: 500;
     }
 
-    /* Номер квитка */
+    /* ===== ШАПКА ===== */
+    .header-left {
+      top: 5.8%;
+      left: 5.5%;
+      font-size: 17px;
+      font-weight: 600;
+      color: #1a56db;
+    }
+
+    .header-right {
+      top: 5.8%;
+      right: 14%;
+      font-size: 15px;
+      font-weight: 500;
+      color: #1a56db;
+    }
+
+    /* ===== ОСНОВНЫЕ ПОЛЯ (поднял вверх) ===== */
     .label-ticket {
-      top: 28.5%;
+      top: 26.8%;
       left: 12%;
       color: #8a8a8a;
       font-size: 13px;
     }
     .value-ticket {
-      top: 28.5%;
+      top: 26.8%;
       left: 42%;
       font-weight: 600;
     }
 
-    /* Вартість */
     .label-price {
-      top: 33.2%;
+      top: 31.3%;
       left: 12%;
       color: #8a8a8a;
       font-size: 13px;
     }
     .value-price {
-      top: 33.2%;
+      top: 31.3%;
       left: 42%;
       font-weight: 600;
     }
 
-    /* Дата */
     .label-date {
-      top: 37.9%;
+      top: 35.8%;
       left: 12%;
       color: #8a8a8a;
       font-size: 13px;
     }
     .value-date {
-      top: 37.9%;
+      top: 35.8%;
       left: 42%;
       font-weight: 600;
     }
 
-    /* Бортовий номер */
     .label-board {
-      top: 48.5%;
+      top: 46.2%;
       left: 12%;
       color: #8a8a8a;
       font-size: 13px;
     }
     .value-board {
-      top: 48.5%;
+      top: 46.2%;
       left: 42%;
       font-weight: 600;
     }
 
-    /* Код */
     .label-code {
-      top: 53.3%;
+      top: 50.8%;
       left: 12%;
       color: #8a8a8a;
       font-size: 13px;
     }
     .value-code {
-      top: 53.3%;
+      top: 50.8%;
       left: 42%;
       font-weight: 600;
     }
 
     /* Таймер */
     .timer-label {
-      top: 66.5%;
+      top: 63.5%;
       left: 0;
       width: 100%;
       text-align: center;
@@ -136,7 +148,7 @@
     }
 
     .timer-value {
-      top: 71.5%;
+      top: 68.2%;
       left: 0;
       width: 100%;
       text-align: center;
@@ -145,11 +157,40 @@
       font-weight: 700;
       letter-spacing: 1px;
     }
+
+    /* ===== НИЖНИЕ ПОДПИСИ ===== */
+    .nav-home {
+      bottom: 3.8%;
+      left: 16%;
+      font-size: 11px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .nav-services {
+      bottom: 3.8%;
+      left: 44.5%;
+      font-size: 11px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .nav-docs {
+      bottom: 3.8%;
+      left: 72%;
+      font-size: 11px;
+      color: #1a56db;
+      font-weight: 500;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Подписи -->
+  <!-- Шапка -->
+  <div class="field header-left">Документи</div>
+  <div class="field header-right">Акаунт</div>
+
+  <!-- Основные поля -->
   <div class="field label-ticket">Номер квитка:</div>
   <div class="field value-ticket ticket-number"></div>
 
@@ -165,8 +206,14 @@
   <div class="field label-code">Код:</div>
   <div class="field value-code code"></div>
 
+  <!-- Таймер -->
   <div class="field timer-label">ДІЙСНИЙ ЩЕ:</div>
   <div class="field timer-value timer"></div>
+
+  <!-- Нижние подписи -->
+  <div class="field nav-home">Головна</div>
+  <div class="field nav-services">Сервіси</div>
+  <div class="field nav-docs">Документи</div>
 
 </body>
 </html>
