@@ -62,7 +62,6 @@
 
     /* =========================================
        ЗДЕСЬ ДВИГАЙ ВСЕ ТЕКСТЫ
-       Меняй только top и left (или right)
     ========================================= */
 
     /* Шапка */
@@ -73,7 +72,6 @@
       font-weight: 600;
       color: #1a4bb8;
     }
-
     .header-right {
       top: 5.8%;
       right: 14%;
@@ -82,7 +80,7 @@
       color: #1a4bb8;
     }
 
-    /* Заголовок "Транспортний квиток" */
+    /* Заголовок */
     .card-title {
       top: 14.8%;
       left: 22%;
@@ -166,7 +164,8 @@
       color: #2c2c2e;
     }
 
-    /* Таймер (и невидимая кнопка) */
+    /* ===== ТАЙМЕР ===== */
+    /* Надпись "ДІЙСНИЙ ЩЕ" */
     .timer-label {
       top: 50%;
       left: 0;
@@ -177,8 +176,9 @@
       font-weight: 500;
     }
 
+    /* Сами цифры таймера — двигай отдельно */
     .timer-value {
-      top: 50%;
+      top: 54%;          /* <-- вот здесь двигай цифры */
       left: 0;
       width: 100%;
       text-align: center;
@@ -189,42 +189,127 @@
       z-index: 5;
     }
 
-    /* Невидимая кнопка поверх таймера */
+    /* Невидимая кнопка сброса таймера */
     .timer-button {
       position: absolute;
-      top: 50%;
+      top: 52%;
       left: 20%;
       width: 60%;
-      height: 9%;
+      height: 10%;
       background: transparent;
       border: none;
       z-index: 10;
-      cursor: pointer;
     }
 
-    /* Нижние подписи */
+    /* ===== НИЖНИЕ ПОДПИСИ ===== */
+    /* Здесь меняй размер через font-size */
     .nav-home {
       bottom: 3%;
       left: 18.5%;
-      font-size: 10px;
+      font-size: 10px;        /* размер */
       color: #1c1c1e;
       font-weight: 500;
     }
-
     .nav-services {
       bottom: 2%;
       left: 44%;
-      font-size: 11px;
+      font-size: 11px;        /* размер */
       color: #1c1c1e;
       font-weight: 600;
     }
-
     .nav-docs {
       bottom: 3%;
       left: 70%;
-      font-size: 10px;
+      font-size: 10px;        /* размер */
       color: #1a4bb8;
       font-weight: 500;
+    }
+
+    /* Невидимая кнопка на нижнем "Документи" */
+    .docs-button {
+      position: absolute;
+      bottom: 1.5%;
+      left: 65%;
+      width: 25%;
+      height: 6%;
+      background: transparent;
+      border: none;
+      z-index: 20;
+    }
+
+    /* ===== МЕНЮ РЕДАКТИРОВАНИЯ ===== */
+    .edit-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.45);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .edit-menu.active {
+      display: flex;
+    }
+
+    .edit-box {
+      background: white;
+      width: 85%;
+      max-width: 340px;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .edit-box h3 {
+      font-size: 17px;
+      margin-bottom: 16px;
+      text-align: center;
+      color: #1c1c1e;
+    }
+
+    .edit-box label {
+      display: block;
+      font-size: 13px;
+      color: #666;
+      margin: 10px 0 4px;
+    }
+
+    .edit-box input {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 15px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      outline: none;
+    }
+
+    .edit-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .edit-buttons button {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .btn-save {
+      background: #1a4bb8;
+      color: white;
+    }
+
+    .btn-cancel {
+      background: #eee;
+      color: #333;
     }
   </style>
 </head>
@@ -256,8 +341,6 @@
   <!-- Таймер -->
   <div class="field timer-label">ДІЙСНИЙ ЩЕ:</div>
   <div class="field timer-value" id="timer">00:59:45</div>
-
-  <!-- Невидимая кнопка на таймере -->
   <button class="timer-button" onclick="resetTimer()"></button>
 
   <!-- Нижние подписи -->
@@ -265,8 +348,35 @@
   <div class="field nav-services">Сервіси</div>
   <div class="field nav-docs">Документи</div>
 
+  <!-- Невидимая кнопка на Документи -->
+  <button class="docs-button" onclick="openEditMenu()"></button>
+
+  <!-- Меню редактирования -->
+  <div class="edit-menu" id="editMenu">
+    <div class="edit-box">
+      <h3>Редагувати дані</h3>
+
+      <label>Номер квитка</label>
+      <input type="text" id="input-ticket" placeholder="AAF142608">
+
+      <label>Дата придбання</label>
+      <input type="text" id="input-date" placeholder="14.10.2026 12.09">
+
+      <label>Бортовий номер</label>
+      <input type="text" id="input-board" placeholder="3008">
+
+      <label>Код</label>
+      <input type="text" id="input-code" placeholder="TR02425">
+
+      <div class="edit-buttons">
+        <button class="btn-cancel" onclick="closeEditMenu()">Скасувати</button>
+        <button class="btn-save" onclick="saveData()">Зберегти</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    let totalSeconds = 59 * 60 + 45; // 00:59:45
+    let totalSeconds = 59 * 60 + 45;
     let timerInterval = null;
 
     function updateTimerDisplay() {
@@ -284,7 +394,6 @@
 
     function startTimer() {
       if (timerInterval) clearInterval(timerInterval);
-
       timerInterval = setInterval(() => {
         if (totalSeconds <= 0) {
           clearInterval(timerInterval);
@@ -296,15 +405,43 @@
     }
 
     function resetTimer() {
-      totalSeconds = 59 * 60 + 59; // сброс на 00:59:59
+      totalSeconds = 59 * 60 + 59;
       updateTimerDisplay();
       startTimer();
     }
 
-    // Запускаем при загрузке
+    // ===== Меню редактирования =====
+    function openEditMenu() {
+      // Подставляем текущие значения
+      document.getElementById('input-ticket').value = getComputedStyle(document.documentElement).getPropertyValue('--ticket-number').replace(/"/g, '').trim();
+      document.getElementById('input-date').value = getComputedStyle(document.documentElement).getPropertyValue('--date').replace(/"/g, '').trim();
+      document.getElementById('input-board').value = getComputedStyle(document.documentElement).getPropertyValue('--board-number').replace(/"/g, '').trim();
+      document.getElementById('input-code').value = getComputedStyle(document.documentElement).getPropertyValue('--code').replace(/"/g, '').trim();
+
+      document.getElementById('editMenu').classList.add('active');
+    }
+
+    function closeEditMenu() {
+      document.getElementById('editMenu').classList.remove('active');
+    }
+
+    function saveData() {
+      const ticket = document.getElementById('input-ticket').value.trim();
+      const date = document.getElementById('input-date').value.trim();
+      const board = document.getElementById('input-board').value.trim();
+      const code = document.getElementById('input-code').value.trim();
+
+      document.documentElement.style.setProperty('--ticket-number', `"${ticket}"`);
+      document.documentElement.style.setProperty('--date', `"${date}"`);
+      document.documentElement.style.setProperty('--board-number', `"${board}"`);
+      document.documentElement.style.setProperty('--code', `"${code}"`);
+
+      closeEditMenu();
+    }
+
+    // Запуск
     updateTimerDisplay();
     startTimer();
   </script>
-
 </body>
 </html>
