@@ -1,22 +1,20 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  
-  <!-- Эти строки помогают сайту лучше открываться на iPhone -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="theme-color" content="#000000">
-
-  <title>fos1ble.github.io</title>
+  <meta name="theme-color" content="#f5f7fa">
+  <title>Транспортний квиток</title>
 
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
     html, body {
@@ -24,19 +22,151 @@
       height: 100%;
       height: 100dvh;
       overflow: hidden;
+      background-color: #f0f2f5;
     }
 
     body {
       background-image: url('background.jpg');
       background-size: cover;
-      background-position: center center;
+      background-position: center top;
       background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-color: #111;
+      position: relative;
+    }
+
+    /* === Здесь меняй все данные === */
+    :root {
+      --ticket-number: "AAF142608";
+      --price: "10";
+      --date: "14.10.2026 12.09";
+      --board-number: "3008";
+      --code: "TR02425";
+      --timer: "00:59:45";
+    }
+
+    .ticket-number::after { content: var(--ticket-number); }
+    .price::after { content: var(--price); }
+    .date::after { content: var(--date); }
+    .board-number::after { content: var(--board-number); }
+    .code::after { content: var(--code); }
+    .timer::after { content: var(--timer); }
+
+    /* Позиционирование текста */
+    .field {
+      position: absolute;
+      color: #1a1a1a;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    /* Номер квитка */
+    .label-ticket {
+      top: 28.5%;
+      left: 12%;
+      color: #8a8a8a;
+      font-size: 13px;
+    }
+    .value-ticket {
+      top: 28.5%;
+      left: 42%;
+      font-weight: 600;
+    }
+
+    /* Вартість */
+    .label-price {
+      top: 33.2%;
+      left: 12%;
+      color: #8a8a8a;
+      font-size: 13px;
+    }
+    .value-price {
+      top: 33.2%;
+      left: 42%;
+      font-weight: 600;
+    }
+
+    /* Дата */
+    .label-date {
+      top: 37.9%;
+      left: 12%;
+      color: #8a8a8a;
+      font-size: 13px;
+    }
+    .value-date {
+      top: 37.9%;
+      left: 42%;
+      font-weight: 600;
+    }
+
+    /* Бортовий номер */
+    .label-board {
+      top: 48.5%;
+      left: 12%;
+      color: #8a8a8a;
+      font-size: 13px;
+    }
+    .value-board {
+      top: 48.5%;
+      left: 42%;
+      font-weight: 600;
+    }
+
+    /* Код */
+    .label-code {
+      top: 53.3%;
+      left: 12%;
+      color: #8a8a8a;
+      font-size: 13px;
+    }
+    .value-code {
+      top: 53.3%;
+      left: 42%;
+      font-weight: 600;
+    }
+
+    /* Таймер */
+    .timer-label {
+      top: 66.5%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      color: #555;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .timer-value {
+      top: 71.5%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      color: #1a56db;
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: 1px;
     }
   </style>
 </head>
 <body>
+
+  <!-- Подписи -->
+  <div class="field label-ticket">Номер квитка:</div>
+  <div class="field value-ticket ticket-number"></div>
+
+  <div class="field label-price">Вартість:</div>
+  <div class="field value-price price"></div>
+
+  <div class="field label-date">Дата придбання:</div>
+  <div class="field value-date date"></div>
+
+  <div class="field label-board">Бортовий номер:</div>
+  <div class="field value-board board-number"></div>
+
+  <div class="field label-code">Код:</div>
+  <div class="field value-code code"></div>
+
+  <div class="field timer-label">ДІЙСНИЙ ЩЕ:</div>
+  <div class="field timer-value timer"></div>
 
 </body>
 </html>
