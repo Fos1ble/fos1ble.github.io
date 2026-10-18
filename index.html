@@ -70,18 +70,19 @@
       font-size: 16px;
       font-weight: 500;
       color: #29517e;
+      cursor: pointer;
+      z-index: 15;
     }
-
     /* ===== ИКОНКА АККАУНТА ===== */
     .account-icon {
       position: absolute;
-      top: 5.3%;          /* двигай здесь */
-      right: 5.2%;        /* и здесь */
-      width: 32px;        /* размер иконки */
+      top: 5.3%;
+      right: 5.2%;
+      width: 32px;
       height: 32px;
-      z-index: 10;
+      z-index: 15;
+      cursor: pointer;
     }
-
     /* Заголовок */
     .card-title {
       top: 14.8%;
@@ -198,6 +199,8 @@
       font-size: 15px;
       color: #1c1c1e;
       font-weight: 500;
+      cursor: pointer;
+      z-index: 15;
     }
     .nav-services {
       bottom: 1.8%;
@@ -205,6 +208,8 @@
       font-size: 16px;
       color: #1c1c1e;
       font-weight: 500;
+      cursor: pointer;
+      z-index: 15;
     }
     .nav-docs {
       bottom: 2.8%;
@@ -288,18 +293,41 @@
       background: #eee;
       color: #333;
     }
+
+    /* ===== ПРОСМОТР ФОТО ===== */
+    .photo-viewer {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      z-index: 200;
+      justify-content: center;
+      align-items: center;
+    }
+    .photo-viewer.active {
+      display: flex;
+    }
+    .photo-viewer img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
   </style>
 </head>
 <body>
   <!-- Шапка -->
   <div class="field header-left">Документи</div>
-  <div class="field header-right">Акаунт</div>
+  <div class="field header-right" onclick="openPhoto(2)">Акаунт</div>
 
-  <!-- Иконка аккаунта (твоя картинка) -->
-  <img src="account.png" class="account-icon" alt="account">
+  <!-- Иконка аккаунта -->
+  <img src="account.png" class="account-icon" alt="account" onclick="openPhoto(2)">
 
   <!-- Заголовок -->
   <div class="field card-title">Транспортний квиток</div>
+
   <!-- Поля -->
   <div class="field label-ticket">Номер квитка:</div>
   <div class="field value-ticket ticket-number"></div>
@@ -311,16 +339,20 @@
   <div class="field value-board board-number"></div>
   <div class="field label-code">Код:</div>
   <div class="field value-code code"></div>
+
   <!-- Таймер -->
   <div class="field timer-label">ДІЙСНИЙ ЩЕ:</div>
   <div class="field timer-value" id="timer">00:59:45</div>
   <button class="timer-button" onclick="resetTimer()"></button>
+
   <!-- Нижние подписи -->
-  <div class="field nav-home">Головна</div>
-  <div class="field nav-services">Сервіси</div>
+  <div class="field nav-home" onclick="openPhoto(1)">Головна</div>
+  <div class="field nav-services" onclick="openPhoto(3)">Сервіси</div>
   <div class="field nav-docs">Документи</div>
+
   <!-- Невидимая кнопка на Документи -->
   <button class="docs-button" onclick="openEditMenu()"></button>
+
   <!-- Меню редактирования -->
   <div class="edit-menu" id="editMenu">
     <div class="edit-box">
@@ -339,9 +371,16 @@
       </div>
     </div>
   </div>
+
+  <!-- Просмотр фото -->
+  <div class="photo-viewer" id="photoViewer" onclick="closePhoto()">
+    <img id="photoImage" src="" alt="photo">
+  </div>
+
   <script>
     let totalSeconds = 59 * 60 + 45;
     let timerInterval = null;
+
     function updateTimerDisplay() {
       const hours = Math.floor(totalSeconds / 3600);
       const minutes = Math.floor((totalSeconds % 3600) / 60);
@@ -352,6 +391,7 @@
         String(seconds).padStart(2, '0');
       document.getElementById('timer').textContent = display;
     }
+
     function startTimer() {
       if (timerInterval) clearInterval(timerInterval);
       timerInterval = setInterval(() => {
@@ -363,11 +403,13 @@
         updateTimerDisplay();
       }, 1000);
     }
+
     function resetTimer() {
       totalSeconds = 59 * 60 + 59;
       updateTimerDisplay();
       startTimer();
     }
+
     function openEditMenu() {
       document.getElementById('input-ticket').value = getComputedStyle(document.documentElement).getPropertyValue('--ticket-number').replace(/"/g, '').trim();
       document.getElementById('input-date').value = getComputedStyle(document.documentElement).getPropertyValue('--date').replace(/"/g, '').trim();
@@ -375,9 +417,11 @@
       document.getElementById('input-code').value = getComputedStyle(document.documentElement).getPropertyValue('--code').replace(/"/g, '').trim();
       document.getElementById('editMenu').classList.add('active');
     }
+
     function closeEditMenu() {
       document.getElementById('editMenu').classList.remove('active');
     }
+
     function saveData() {
       const ticket = document.getElementById('input-ticket').value.trim();
       const date = document.getElementById('input-date').value.trim();
@@ -389,6 +433,18 @@
       document.documentElement.style.setProperty('--code', `"${code}"`);
       closeEditMenu();
     }
+
+    // ===== Открытие фото =====
+    function openPhoto(num) {
+      const img = document.getElementById('photoImage');
+      img.src = num + '.jpg';   // 1.jpg / 2.jpg / 3.jpg
+      document.getElementById('photoViewer').classList.add('active');
+    }
+
+    function closePhoto() {
+      document.getElementById('photoViewer').classList.remove('active');
+    }
+
     updateTimerDisplay();
     startTimer();
   </script>
