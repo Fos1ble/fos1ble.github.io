@@ -10,12 +10,11 @@
   }
 </style>
 
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  height: 100dvh; /* лучше чем 100vh на мобилках */
-  overflow: hidden; /* если не нужен скролл */
+function goFullscreen() {
+  const elem = document.documentElement;
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { // Safari
+    elem.webkitRequestFullscreen();
+  }
 }
-
