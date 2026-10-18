@@ -34,10 +34,10 @@
       position: relative;
     }
 
-    /* === Здесь меняй данные === */
+    /* === Данные (меняй здесь) === */
     :root {
       --ticket-number: "AAF142608";
-      --price: "10";
+      --price: "12";
       --date: "14.10.2026 12.09";
       --board-number: "3008";
       --code: "TR02425";
@@ -61,62 +61,71 @@
 
     /* ===== ШАПКА ===== */
     .header-left {
-      top: 5.7%;
-      left: 5.2%;
+      top: 5.5%;
+      left: 5.3%;
       font-size: 17px;
       font-weight: 600;
-      color: #1e4fc0; /* более тёмный синий */
+      color: #1a4bb8;
     }
 
     .header-right {
-      top: 5.3%;          /* чуть ниже, чтобы была рядом с иконкой */
-      right: 13.8%;
+      top: 5.8%;
+      right: 14%;
       font-size: 15px;
       font-weight: 500;
-      color: #1e4fc0;
+      color: #1a4bb8;
+    }
+
+    /* Заголовок карточки */
+    .card-title {
+      top: 14.8%;
+      left: 18%;
+      font-size: 17px;
+      font-weight: 600;
+      color: #1c1c1e;
     }
 
     /* ===== БЛОК 1 ===== */
     .label-ticket {
-      top: 26.6%;
-      left: 13.5%;
+      top: 24.8%;
+      left: 12.8%;
       color: #8e8e93;
       font-size: 13px;
       font-weight: 400;
     }
     .value-ticket {
-      top: 26.6%;
-      left: 43.5%;
+      top: 24.8%;
+      left: 42%;
       font-size: 15px;
-      font-weight: 500;          /* не жирный */
+      font-weight: 500;
       color: #2c2c2e;
     }
 
     .label-price {
-      top: 31.1%;
-      left: 13.5%;
+      top: 29.2%;
+      left: 12.8%;
       color: #8e8e93;
       font-size: 13px;
       font-weight: 400;
     }
     .value-price {
-      top: 31.1%;
-      left: 43.5%;
+      top: 29.2%;
+      left: 42%;
       font-size: 15px;
       font-weight: 500;
       color: #2c2c2e;
     }
 
     .label-date {
-      top: 35.6%;
-      left: 13.5%;
+      top: 33.6%;
+      left: 12.8%;
       color: #8e8e93;
       font-size: 13px;
       font-weight: 400;
     }
     .value-date {
-      top: 35.6%;
-      left: 43.5%;
+      top: 33.6%;
+      left: 42%;
       font-size: 15px;
       font-weight: 500;
       color: #2c2c2e;
@@ -124,30 +133,30 @@
 
     /* ===== БЛОК 2 ===== */
     .label-board {
-      top: 45.3%;
-      left: 13.5%;
+      top: 43.8%;
+      left: 12.8%;
       color: #8e8e93;
       font-size: 13px;
       font-weight: 400;
     }
     .value-board {
-      top: 45.3%;
-      left: 43.5%;
+      top: 43.8%;
+      left: 42%;
       font-size: 15px;
       font-weight: 500;
       color: #2c2c2e;
     }
 
     .label-code {
-      top: 49.8%;
-      left: 13.5%;
+      top: 48.3%;
+      left: 12.8%;
       color: #8e8e93;
       font-size: 13px;
       font-weight: 400;
     }
     .value-code {
-      top: 49.8%;
-      left: 43.5%;
+      top: 48.3%;
+      left: 42%;
       font-size: 15px;
       font-weight: 500;
       color: #2c2c2e;
@@ -155,49 +164,49 @@
 
     /* ===== ТАЙМЕР ===== */
     .timer-label {
-      top: 62.1%;
+      top: 60.8%;
       left: 0;
       width: 100%;
       text-align: center;
-      color: #636366;
+      color: #6c6c70;
       font-size: 13px;
       font-weight: 500;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.2px;
     }
 
     .timer-value {
-      top: 66.4%;
+      top: 65.3%;
       left: 0;
       width: 100%;
       text-align: center;
-      color: #1e4fc0;           /* более тёмный синий */
-      font-size: 33px;
-      font-weight: 450;         /* менее жирный */
+      color: #1a4bb8;
+      font-size: 32px;
+      font-weight: 600;
       letter-spacing: 0.3px;
     }
 
-    /* ===== НИЖНИЕ ПОДПИСИ (опустил ниже) ===== */
+    /* ===== НИЖНИЕ ПОДПИСИ ===== */
     .nav-home {
-      bottom: 3%;
-      left: 15.7%;
+      bottom: 3.5%;
+      left: 15.3%;
       font-size: 10px;
       color: #1c1c1e;
       font-weight: 500;
     }
 
     .nav-services {
-      bottom: 3.3%;
-      left: 43.5%;
-      font-size: 11px;           /* чуть больше */
-      color: #000000;           /* чернее */
+      bottom: 3.5%;
+      left: 43.8%;
+      font-size: 10.5px;
+      color: #1c1c1e;
       font-weight: 500;
     }
 
     .nav-docs {
-      bottom: 3.3%;
-      left: 71.5%;
+      bottom: 3.5%;
+      left: 71.3%;
       font-size: 10px;
-      color: #1e4fc0;
+      color: #1a4bb8;
       font-weight: 500;
     }
   </style>
@@ -207,6 +216,9 @@
   <!-- Шапка -->
   <div class="field header-left">Документи</div>
   <div class="field header-right">Акаунт</div>
+
+  <!-- Заголовок карточки -->
+  <div class="field card-title">Транспортний квиток</div>
 
   <!-- Основные поля -->
   <div class="field label-ticket">Номер квитка:</div>
