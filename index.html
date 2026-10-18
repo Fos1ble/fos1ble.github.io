@@ -7,15 +7,5 @@
     background-attachment: fixed;     /* если хочешь, чтобы не скроллилась */
     min-height: 100vh;                /* чтобы на всю высоту экрана было */
     margin: 0;
-
-    function goFullscreen() {
-  const elem = document.documentElement;
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) { // Safari
-    elem.webkitRequestFullscreen();
-  }
-}
-
   }
 </style>
