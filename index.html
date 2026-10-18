@@ -34,14 +34,15 @@
       position: relative;
     }
 
-    /* === Данные (меняй здесь) === */
+    /* =========================================
+       ЗДЕСЬ МЕНЯЙ ДАННЫЕ
+    ========================================= */
     :root {
       --ticket-number: "AAF142608";
-      --price: "12";
+      --price: "10";
       --date: "14.10.2026 12.09";
       --board-number: "3008";
       --code: "TR02425";
-      --timer: "00:59:45";
     }
 
     .ticket-number::after { content: var(--ticket-number); }
@@ -49,7 +50,6 @@
     .date::after { content: var(--date); }
     .board-number::after { content: var(--board-number); }
     .code::after { content: var(--code); }
-    .timer::after { content: var(--timer); }
 
     .field {
       position: absolute;
@@ -57,9 +57,15 @@
       font-size: 15px;
       font-weight: 400;
       letter-spacing: -0.2px;
+      white-space: nowrap;
     }
 
-    /* ===== ШАПКА ===== */
+    /* =========================================
+       ЗДЕСЬ ДВИГАЙ ВСЕ ТЕКСТЫ
+       Меняй только top и left (или right)
+    ========================================= */
+
+    /* Шапка */
     .header-left {
       top: 5.5%;
       left: 5.3%;
@@ -76,7 +82,7 @@
       color: #1a4bb8;
     }
 
-    /* Заголовок карточки */
+    /* Заголовок "Транспортний квиток" */
     .card-title {
       top: 14.8%;
       left: 18%;
@@ -85,13 +91,12 @@
       color: #1c1c1e;
     }
 
-    /* ===== БЛОК 1 ===== */
+    /* Номер квитка */
     .label-ticket {
       top: 24.8%;
       left: 12.8%;
       color: #8e8e93;
       font-size: 13px;
-      font-weight: 400;
     }
     .value-ticket {
       top: 24.8%;
@@ -101,12 +106,12 @@
       color: #2c2c2e;
     }
 
+    /* Вартість */
     .label-price {
       top: 29.2%;
       left: 12.8%;
       color: #8e8e93;
       font-size: 13px;
-      font-weight: 400;
     }
     .value-price {
       top: 29.2%;
@@ -116,12 +121,12 @@
       color: #2c2c2e;
     }
 
+    /* Дата */
     .label-date {
       top: 33.6%;
       left: 12.8%;
       color: #8e8e93;
       font-size: 13px;
-      font-weight: 400;
     }
     .value-date {
       top: 33.6%;
@@ -131,13 +136,12 @@
       color: #2c2c2e;
     }
 
-    /* ===== БЛОК 2 ===== */
+    /* Бортовий номер */
     .label-board {
       top: 43.8%;
       left: 12.8%;
       color: #8e8e93;
       font-size: 13px;
-      font-weight: 400;
     }
     .value-board {
       top: 43.8%;
@@ -147,12 +151,12 @@
       color: #2c2c2e;
     }
 
+    /* Код */
     .label-code {
       top: 48.3%;
       left: 12.8%;
       color: #8e8e93;
       font-size: 13px;
-      font-weight: 400;
     }
     .value-code {
       top: 48.3%;
@@ -162,7 +166,7 @@
       color: #2c2c2e;
     }
 
-    /* ===== ТАЙМЕР ===== */
+    /* Таймер (и невидимая кнопка) */
     .timer-label {
       top: 60.8%;
       left: 0;
@@ -171,7 +175,6 @@
       color: #6c6c70;
       font-size: 13px;
       font-weight: 500;
-      letter-spacing: 0.2px;
     }
 
     .timer-value {
@@ -183,9 +186,23 @@
       font-size: 32px;
       font-weight: 600;
       letter-spacing: 0.3px;
+      z-index: 5;
     }
 
-    /* ===== НИЖНИЕ ПОДПИСИ ===== */
+    /* Невидимая кнопка поверх таймера */
+    .timer-button {
+      position: absolute;
+      top: 63%;
+      left: 20%;
+      width: 60%;
+      height: 9%;
+      background: transparent;
+      border: none;
+      z-index: 10;
+      cursor: pointer;
+    }
+
+    /* Нижние подписи */
     .nav-home {
       bottom: 3.5%;
       left: 15.3%;
@@ -217,10 +234,10 @@
   <div class="field header-left">Документи</div>
   <div class="field header-right">Акаунт</div>
 
-  <!-- Заголовок карточки -->
+  <!-- Заголовок -->
   <div class="field card-title">Транспортний квиток</div>
 
-  <!-- Основные поля -->
+  <!-- Поля -->
   <div class="field label-ticket">Номер квитка:</div>
   <div class="field value-ticket ticket-number"></div>
 
@@ -238,12 +255,56 @@
 
   <!-- Таймер -->
   <div class="field timer-label">ДІЙСНИЙ ЩЕ:</div>
-  <div class="field timer-value timer"></div>
+  <div class="field timer-value" id="timer">00:59:45</div>
+
+  <!-- Невидимая кнопка на таймере -->
+  <button class="timer-button" onclick="resetTimer()"></button>
 
   <!-- Нижние подписи -->
   <div class="field nav-home">Головна</div>
   <div class="field nav-services">Сервіси</div>
   <div class="field nav-docs">Документи</div>
+
+  <script>
+    let totalSeconds = 59 * 60 + 45; // 00:59:45
+    let timerInterval = null;
+
+    function updateTimerDisplay() {
+      const hours = Math.floor(totalSeconds / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      const display = 
+        String(hours).padStart(2, '0') + ':' +
+        String(minutes).padStart(2, '0') + ':' +
+        String(seconds).padStart(2, '0');
+
+      document.getElementById('timer').textContent = display;
+    }
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+
+      timerInterval = setInterval(() => {
+        if (totalSeconds <= 0) {
+          clearInterval(timerInterval);
+          return;
+        }
+        totalSeconds--;
+        updateTimerDisplay();
+      }, 1000);
+    }
+
+    function resetTimer() {
+      totalSeconds = 59 * 60 + 59; // сброс на 00:59:59
+      updateTimerDisplay();
+      startTimer();
+    }
+
+    // Запускаем при загрузке
+    updateTimerDisplay();
+    startTimer();
+  </script>
 
 </body>
 </html>
